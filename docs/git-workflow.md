@@ -1,23 +1,43 @@
-# Git Workflow
+# Git Workflow Documentation
 
-This project follows a structured Git branching workflow to demonstrate version control best practices.
+## Overview
+
+This project uses a structured Git workflow to keep development isolated, reviewable, traceable, and release-ready.
 
 ## Branch Strategy
 
-- `main` — stable, production-ready code
-- `dev` — integration branch for completed features
-- `feature/*` — isolated development branches for individual features
+### `main`
+
+Production-ready branch containing stable releases.
+
+Direct feature development is not performed on `main`.
+
+### `dev`
+
+Integration branch used to combine completed and reviewed features before production promotion.
+
+### `feature/*`
+
+Short-lived development branches used to isolate individual changes.
+
+Feature branches are created from `dev` and merged back through GitHub Pull Requests.
+
+---
 
 ## Workflow
 
-Feature branches are created from `dev`.
-
-Completed features are merged into `dev` through Pull Requests.
-
-After validation, `dev` is promoted to `main` through a final Pull Request.
-
-## Release Strategy
-
-Stable versions on `main` are identified using annotated Git tags such as:
-
-`v1.0.0`
+```text
+feature/*
+    │
+    │ Pull Request
+    ▼
+   dev
+    │
+    │ Integration / Validation
+    │
+    │ Pull Request
+    ▼
+  main
+    │
+    ▼
+ Version Tag
